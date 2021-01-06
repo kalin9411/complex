@@ -22,3 +22,14 @@ after_success:
   - docker push stephengrider/multi-nginx
   - docker push stephengrider/multi-server
   - docker push stephengrider/multi-worker
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-2'
+  app: 'multi-docker'
+  env: 'MultiDocker-env'
+  bucket_name: 'elasticbeanstalk-us-east-2-221771364686'
+  bucket_path: 'docker-multi'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
